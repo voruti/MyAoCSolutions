@@ -1,0 +1,9 @@
+version: "3"
+services:
+
+  aoc2020:
+    image: 'voruti/aoc2020:latest'
+    container_name: aoc2020
+
+    volumes:
+      - './data/:/data/'
