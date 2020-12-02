@@ -2,6 +2,7 @@ package voruti.aoc2020;
 
 import voruti.aoc2020.puzzles.AbstractPuzzle;
 import voruti.aoc2020.puzzles.Day01;
+import voruti.aoc2020.puzzles.Day02;
 
 import java.util.Scanner;
 
@@ -25,13 +26,18 @@ public final class PuzzleFactory {
      * @return an instance of the matching class
      */
     public static AbstractPuzzle createOfDay(int day) {
+        AbstractPuzzle puzzle = null;
         switch (day) {
             case 1:
-                return new Day01().setInput(loadInputOfDay(day));
+                puzzle = new Day01().setInput(loadInputOfDay(day));
+                break;
+            case 2:
+                puzzle = new Day02().setInput(loadInputOfDay(day));
+                break;
 
             default:
-                return null;
         }
+        return puzzle;
     }
 
     /**

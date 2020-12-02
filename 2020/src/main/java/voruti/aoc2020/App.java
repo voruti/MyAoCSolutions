@@ -29,7 +29,7 @@ public class App implements Runnable {
     @Override
     public void run() {
         if (runAll) {
-            days = IntStream.rangeClosed(1, 1).boxed().collect(Collectors.toList());
+            days = IntStream.rangeClosed(1, 2).boxed().collect(Collectors.toList());
         }
         if (days != null) {
             days.stream().map(PuzzleFactory::createOfDay).forEach(p -> {
