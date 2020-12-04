@@ -23,25 +23,25 @@ public class Day04 extends AbstractPuzzle {
 
         int validCount = 0;
 
-        passportList.forEach(p -> {
-            List<String> fieldList = Arrays.asList(p.split("[\s\n]+"));
+        for (String p : passportList) {
+            List<String> fieldList = Arrays.asList(p.split("[\\s\\n]+"));
             Map<String, String> fieldMap = fieldListToMap(fieldList);
 
-            if (fieldMap.get("byr", null) != null && 
-                fieldMap.get("iyr", null) != null && 
-                fieldMap.get("eyr", null) != null && 
-                fieldMap.get("hgt", null) != null && 
-                fieldMap.get("hcl", null) != null && 
-                fieldMap.get("ecl", null) != null && 
-                fieldMap.get("pid", null) != null) {
+            if (fieldMap.get("byr") != null
+                && fieldMap.get("iyr") != null
+                && fieldMap.get("eyr") != null
+                && fieldMap.get("hgt") != null
+                && fieldMap.get("hcl") != null
+                && fieldMap.get("ecl") != null
+                && fieldMap.get("pid") != null) {
                 validCount++;
             }
-        });
+        }
 
         // return:
         return validCount + "";
     }
-    
+
     /**
      * Map a {@link List} of fields to a {@link Map} of fields.
      *
