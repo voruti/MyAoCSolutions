@@ -1,0 +1,49 @@
+package voruti.aoc2020.puzzles;
+
+import java.util.Arrays;
+import java.util.List;
+
+import voruti.aoc2020.utility.TwoInts;
+
+/**
+ * Puzzles of day 4.
+ *
+ * @author voruti
+ */
+public class Day04 extends AbstractPuzzle {
+
+    /**
+     * Place of implementation of the first puzzle of the day.
+     * Uses {@link AbstractPuzzle#input} as input source.
+     *
+     * @return the result of the calculation, etc.
+     */
+    public String firstPuzzle() {
+        
+
+        // return:
+        return "";
+    }
+
+    /**
+     * Place of implementation of the second puzzle of the day.
+     * Uses {@link AbstractPuzzle#input} as input source.
+     *
+     * @return the result of the calculation, etc.
+     */
+    public String secondPuzzle() {
+        
+
+        // return:
+        return "";
+    }
+
+    /**
+     * Get the day of this puzzle.
+     *
+     * @return the day of this puzzle
+     */
+    public int getDay() {
+        return 4;
+    }
+}
