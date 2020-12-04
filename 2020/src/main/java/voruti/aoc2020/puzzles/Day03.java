@@ -89,7 +89,7 @@ public class Day03 extends AbstractPuzzle {
                 }
             }
 
-            System.out.println(count);
+            // System.out.println(count);
             finalCount *= count;
         }
 
