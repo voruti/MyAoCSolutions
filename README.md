@@ -1,6 +1,7 @@
 # My Advent of Code Solutions
 
 ![Language](https://img.shields.io/badge/Language-Java-orange)
+![Docker Image CI](https://github.com/voruti/MyAoCSolutions/workflows/Docker%20Image%20CI/badge.svg)
 
 My solutions for [Advent of Code](https://adventofcode.com).
 
