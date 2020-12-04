@@ -82,7 +82,7 @@ public class Day04 extends AbstractPuzzle {
         // return:
         return validCount + "";
     }
-    
+
     /**
      * Checks, if a given passport (as {@link Map}) is valid.
      *
