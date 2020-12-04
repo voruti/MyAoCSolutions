@@ -3,7 +3,7 @@ FROM maven:3.6.3-openjdk-8 AS build
 
 COPY . /usr/src/app
 
-RUN mvn -B -f /usr/src/app/pom.xml package
+RUN mvn -B -f /usr/src/app/pom.xml verify
 
 
 # Package
