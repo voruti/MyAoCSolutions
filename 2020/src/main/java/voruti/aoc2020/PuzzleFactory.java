@@ -1,10 +1,7 @@
 package voruti.aoc2020;
 
 import voruti.aoc2020.puzzles.AbstractPuzzle;
-import voruti.aoc2020.puzzles.Day01;
-import voruti.aoc2020.puzzles.Day02;
-import voruti.aoc2020.puzzles.Day03;
-import voruti.aoc2020.puzzles.Day04;
+import voruti.aoc2020.puzzles.*;
 
 import java.util.Scanner;
 
@@ -41,6 +38,9 @@ public final class PuzzleFactory {
                 break;
             case 4:
                 puzzle = new Day04().setInput(loadInputOfDay(day));
+                break;
+            case 5:
+                puzzle = new Day05().setInput(loadInputOfDay(day));
                 break;
 
             default:
