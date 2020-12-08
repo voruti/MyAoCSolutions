@@ -43,6 +43,7 @@
     </module>
 
     <module name="TreeWalker">
+        <module name="SuppressWarningsHolder"/>
         <module name="InvalidJavadocPosition"/>
         <module name="JavadocMethod">
             <property name="validateThrows" value="true"/>
