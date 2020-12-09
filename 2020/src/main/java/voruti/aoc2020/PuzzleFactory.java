@@ -51,6 +51,9 @@ public final class PuzzleFactory {
             case 8:
                 puzzle = new Day08().setInput(loadInputOfDay(day));
                 break;
+            case 9:
+                puzzle = new Day09().setInput(loadInputOfDay(day));
+                break;
 
             default:
         }
