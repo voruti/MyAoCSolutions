@@ -73,58 +73,73 @@ public class Day08 extends AbstractPuzzle {
      *
      * @return the result of the calculation, etc.
      */
+    @SuppressWarnings("fallthrough")
     public String secondPuzzle() {
-        LinkedList<String> consoleCode = new LinkedList<>(Arrays.asList(getInput().split("\n")));
-        ListIterator<String> listIterator = consoleCode.listIterator(0);
+        LinkedList<String> masterConsoleCode = new LinkedList<>(Arrays.asList(getInput().split("\n")));
 
-        String currentInstruction = listIterator.next();
-        boolean goingForward = true;
-        int accumulator = 0;
-        // System.out.println("new: " + listIterator.previousIndex() + ": " + currentInstruction);
-        try  {
-            while (true) {
-                // System.out.println(listIterator.previousIndex() + ": " + currentInstruction);
-                // System.out.println(consoleCode.toString().substring(0, 50));
-
-                String[] instructionParts = currentInstruction.split(" ");
-                switch (instructionParts[0]) {
-                    case "jmp":
-                        int jumpCount = Integer.parseInt(instructionParts[1].substring(1, instructionParts[1].length()));
-                        boolean jumpingForward = instructionParts[1].startsWith("+");
-                        if (jumpingForward ^ goingForward) {
-                            goingForward = !goingForward;
-                            String throwAway = jumpingForward ? listIterator.next() : listIterator.previous();
-                        }
-
-                        while (jumpCount != 0) {
-                            currentInstruction = jumpingForward ? listIterator.next() : listIterator.previous();
-                            jumpCount--;
-                        }
-
-                        // System.out.println("new: " + (jumpingForward ? listIterator.previousIndex() : listIterator.nextIndex()) + ": " + currentInstruction);
-                        break;
-                    case "acc":
-                        accumulator += Integer.parseInt(instructionParts[1]);
-                    case "nop":
-                        if (!goingForward) {
-                            goingForward = true;
-                            listIterator.next();
-                        }
-
-                        consoleCode.set(listIterator.previousIndex(), null);
-                        // System.out.println("new: " + consoleCode.toString().substring(0, 150));
-                        currentInstruction = listIterator.next();
-                        // System.out.println("new: " + listIterator.previousIndex() + ": " + currentInstruction);
-                }
+        for (int i = 0; i < masterConsoleCode.size(); i++) {
+            if (masterConsoleCode.get(i).startsWith("acc")) {
+                continue;
             }
-        } catch (NullPointerException npe) {
-            System.err.println("Loop detected!");
-        } catch (NoSuchElementException nsee) {
-            System.out.println("Program fixed!");
+
+            LinkedList<String> consoleCode = new LinkedList<>(masterConsoleCode);
+            consoleCode.set(i, masterConsoleCode.get(i).replace("nop", "tmp").replace("jmp", "nop").replace("tmp", "jmp"));
+
+
+            ListIterator<String> listIterator = consoleCode.listIterator(0);
+
+            String currentInstruction = listIterator.next();
+            boolean goingForward = true;
+            int accumulator = 0;
+            // System.out.println("new: " + listIterator.previousIndex() + ": " + currentInstruction);
+            try  {
+                while (true) {
+                    // System.out.println(listIterator.previousIndex() + ": " + currentInstruction);
+                    // System.out.println(consoleCode.toString().substring(0, 50));
+
+                    String[] instructionParts = currentInstruction.split(" ");
+                    switch (instructionParts[0]) {
+                        case "jmp":
+                            int jumpCount = Integer.parseInt(instructionParts[1].substring(1, instructionParts[1].length()));
+                            boolean jumpingForward = instructionParts[1].startsWith("+");
+                            if (jumpingForward ^ goingForward) {
+                                goingForward = !goingForward;
+                                String throwAway = jumpingForward ? listIterator.next() : listIterator.previous();
+                            }
+
+                            while (jumpCount != 0) {
+                                currentInstruction = jumpingForward ? listIterator.next() : listIterator.previous();
+                                jumpCount--;
+                            }
+
+                            // System.out.println("new: " + (jumpingForward ? listIterator.previousIndex() : listIterator.nextIndex()) + ": " + currentInstruction);
+                            break;
+                        case "acc":
+                            accumulator += Integer.parseInt(instructionParts[1]);
+                        case "nop":
+                            if (!goingForward) {
+                                goingForward = true;
+                                listIterator.next();
+                            }
+
+                            consoleCode.set(listIterator.previousIndex(), null);
+                            // System.out.println("new: " + consoleCode.toString().substring(0, 150));
+                            currentInstruction = listIterator.next();
+                            // System.out.println("new: " + listIterator.previousIndex() + ": " + currentInstruction);
+                    }
+                }
+            } catch (NullPointerException npe) {
+                // System.err.println("Loop detected!");
+            } catch (NoSuchElementException nsee) {
+                System.out.println("Program fixed!");
+                // return:
+                return accumulator + "";
+            }
+
         }
-        
-        // return:
-        return accumulator + "";
+
+        // only possible when invalid input:
+        return null;
     }
 
     /**
